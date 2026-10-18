@@ -1,16 +1,25 @@
-# React + Vite
+# React Product Dashboard - Assignment 5
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, modular React dashboard built with Vite demonstrating core React fundamentals: component decomposition, state management, controlled inputs, and composition using children props.
 
-Currently, two official plugins are available:
+## File Organization
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The project follows a clean, single-responsibility component structure:
 
-## React Compiler
+- `src/components/Card.jsx`: A pure layout wrapper component utilizing the `children` prop. It applies border, padding, and elevation styles without knowing what children it renders.
+- `src/components/Product.jsx`: A presentational component receiving `title` and `price` via props, wrapping its content inside `Card`.
+- `src/components/ProductList.jsx`: Renders the hard-coded product dataset using `.map()` and assigns stable unique keys (`id`).
+- `src/App.jsx`: The state root managing `name` (controlled input) and `showProducts` (conditional rendering toggle).
+- `src/main.jsx`: React root mount configuration created by Vite.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Challenges Faced
 
-## Expanding the ESLint configuration
+1. **Composition via `children` Prop:** Designing the `Card` component to remain strictly agnostic of its content while enforcing consistent styling required separating layout logic from product presentation.
+2. **Strict Controlled Components:** Managing the user greeting input without direct DOM access required binding input state to `value` and updating purely through `onChange`.
+3. **Constraint Adherence:** Building a dynamic UI strictly through primitive `useState` and conditional rendering (`&&`) without relying on lifecycle hooks (`useEffect`) or external libraries.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to Run
+
+1. Install dependencies:
+   ```bash
+   npm install
