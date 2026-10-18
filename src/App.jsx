@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import ProductList from './components/ProductList';
 
 function App() {
   const [name, setName] = useState('');
+  const [showProducts, setShowProducts] = useState(true);
 
   return (
     <div style={{ maxWidth: '600px', margin: '40px auto', fontFamily: 'sans-serif', padding: '0 20px' }}>
@@ -28,6 +30,24 @@ function App() {
       <p style={{ fontSize: '18px', fontWeight: 'bold' }}>
         Hello, {name}
       </p>
+
+      <div style={{ margin: '20px 0' }}>
+        <button
+          onClick={() => setShowProducts((prev) => !prev)}
+          style={{
+            padding: '10px 16px',
+            fontSize: '14px',
+            cursor: 'pointer',
+            borderRadius: '4px',
+            border: '1px solid #ccc',
+            backgroundColor: '#f0f0f0'
+          }}
+        >
+          {showProducts ? 'Hide Products' : 'Show Products'}
+        </button>
+      </div>
+
+      {showProducts && <ProductList />}
     </div>
   );
 }
